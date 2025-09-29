@@ -26,12 +26,6 @@
 
 <body class="bg-white h-full overflow-x-hidden">
 
-    <!-- GLOBAL-LOADER -->
-    {{-- <div id="global-loader">
-        <img src="{{ asset('assets/images/loader.svg') }}" class="loader-img" alt="Loader">
-    </div> --}}
-    <!-- /GLOBAL-LOADER -->
-
     <!-- PAGE -->
     <div class="">
         <div class="">
