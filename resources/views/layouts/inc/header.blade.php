@@ -37,6 +37,7 @@
             </div>
         </div>
     </div>
+
     <div class="bg-transparent absolute top-10 left-0 right-0 z-[100]" id="navbar">
         <div class="container mx-auto flex justify-between items-center">
             <a class="inline-block w-[6rem] h-[6rem] my-[-10px] overflow-hidden" href="#">
