@@ -6,7 +6,11 @@ set -o errexit
 echo "=== Running database migrations ==="
 php artisan migrate --force --no-interaction
 
-# 2. Maintenant on peut vider et reconstruire les caches sans risque
+# 2. ON FORCE LE PEUPLEMENT DE LA BASE (Seeding) AUTOMATIQUEMENT
+echo "=== Seeding database ==="
+php artisan db:seed --force --no-interaction
+
+# 3. Maintenant on peut vider et reconstruire les caches sans risque
 echo "=== Clearing caches ==="
 php artisan cache:clear || true
 php artisan config:clear
