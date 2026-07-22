@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Mail\ContactMail;
-use App\Mail\MembershipMail;
 use App\Models\About;
 use App\Models\Banner;
 use App\Models\Career;
@@ -13,7 +11,6 @@ use App\Models\Post;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ViewController extends Controller
@@ -114,17 +111,10 @@ class ViewController extends Controller
                 ->with('error', $firstErrorMessage);
         }
 
-        try {
+        // TODO: Réactiver l'envoi email quand le SMTP sera configuré
+        // Mail::to('hello@kksmartcom.com')->send(new MembershipMail($request->all()));
 
-            $member = $request->all();
-
-            Mail::to('hello@kksmartcom.com')->send(new MembershipMail($member));
-
-            return redirect()->back()->with('success', 'Votre demande d\'adhésion a été envoyé avec succès ! Un retour vous sera fait à l\'adresse email indiqué.');
-        } catch (\Exception $e) {
-            Log::error('Erreur lors de l\'envoie de la demande d\'adhésion : ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'envoie de la demande d\'adhésion. Veuillez reéssayer.');
-        }
+        return redirect()->back()->with('success', 'Votre demande d\'adhésion a été envoyé avec succès ! Un retour vous sera fait à l\'adresse email indiqué.');
     }
 
     public function contactStore(Request $request)
@@ -152,17 +142,10 @@ class ViewController extends Controller
                 ->with('error', $firstErrorMessage);
         }
 
-        try {
+        // TODO: Réactiver l'envoi email quand le SMTP sera configuré
+        // Mail::to('hello@kksmartcom.com')->send(new ContactMail($request->all()));
 
-            $contact = $request->all();
-
-            Mail::to('hello@kksmartcom.com')->send(new ContactMail($contact));
-
-            return redirect()->back()->with('success', 'Message envoyé.');
-        } catch (\Exception $e) {
-            Log::error('Erreur lors de l\'envoie du message : ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'envoie du message. Veuillez reéssayer.');
-        }
+        return redirect()->back()->with('success', 'Message envoyé.');
     }
 
     public function searchStore(Request $request)
