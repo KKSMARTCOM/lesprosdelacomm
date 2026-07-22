@@ -8,4 +8,9 @@
 
 /.github export-ignore
 CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+.editorconfig export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+
+# Ensure build.sh is executable on Unix systems
+build.sh text eol=lf

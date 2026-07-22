@@ -122,7 +122,6 @@ class ViewController extends Controller
 
             return redirect()->back()->with('success', 'Votre demande d\'adhésion a été envoyé avec succès ! Un retour vous sera fait à l\'adresse email indiqué.');
         } catch (\Exception $e) {
-            dd($e);
             Log::error('Erreur lors de l\'envoie de la demande d\'adhésion : ' . $e->getMessage());
             return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'envoie de la demande d\'adhésion. Veuillez reéssayer.');
         }
@@ -161,7 +160,6 @@ class ViewController extends Controller
 
             return redirect()->back()->with('success', 'Message envoyé.');
         } catch (\Exception $e) {
-            dd($e);
             Log::error('Erreur lors de l\'envoie du message : ' . $e->getMessage());
             return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'envoie du message. Veuillez reéssayer.');
         }
