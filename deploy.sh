@@ -3,7 +3,7 @@
 set -o errexit
 
 echo "=== Installing Composer dependencies ==="
-composer install --no-dev --working-dir=$DOCUMENT_ROOT --optimize-autoloader --no-interaction
+composer install --no-dev --optimize-autoloader --no-interaction
 
 echo "=== Clearing caches ==="
 php artisan cache:clear
@@ -15,7 +15,6 @@ echo "=== Running database migrations ==="
 php artisan migrate --force --no-interaction
 
 echo "=== Seeding database (if needed) ==="
-# Uncomment the next line if you want to seed the database on deployment
 # php artisan db:seed --force --no-interaction
 
 echo "=== Caching configuration ==="
@@ -28,5 +27,8 @@ php artisan storage:link || true
 
 echo "=== Setting permissions ==="
 chmod -R 775 storage bootstrap/cache
+chown -R www-data:www-data storage bootstrap/cache
 
-echo "=== Build completed successfully ==="
+echo "=== Starting PHP-FPM and Nginx ==="
+php-fpm -D
+nginx -g "daemon off;"
