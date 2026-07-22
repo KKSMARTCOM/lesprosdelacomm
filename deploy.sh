@@ -2,20 +2,16 @@
 # exit on error
 set -o errexit
 
-echo "=== Installing Composer dependencies ==="
-composer install --no-dev --optimize-autoloader --no-interaction
-
-echo "=== Clearing caches ==="
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-
+# 1. On applique d'abord les migrations pour créer TOUTES les tables nécessaires
 echo "=== Running database migrations ==="
 php artisan migrate --force --no-interaction
 
-echo "=== Seeding database (if needed) ==="
-# php artisan db:seed --force --no-interaction
+# 2. Maintenant on peut vider et reconstruire les caches sans risque
+echo "=== Clearing caches ==="
+php artisan cache:clear || true
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
 echo "=== Caching configuration ==="
 php artisan config:cache
